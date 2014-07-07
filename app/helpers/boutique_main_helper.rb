@@ -1,0 +1,2 @@
+module BoutiqueMainHelper
+end
