@@ -9,10 +9,10 @@
             <a href="#" data-role="button" id="main_sales" data-theme="b">Sales</a>
         </div>
         {% endif %} -->
-        <div class="ui-block-b">
-            <a href="#" data-role="button" data-ajax="false" id="main_invoice" data-theme="b">Invoice</a>
-        </div>
         <div class="ui-block-a">
+            <a href="#" data-role="button" data-ajax="false" id="main_clothing" data-theme="b">Clothing</a>
+        </div>
+<!--         <div class="ui-block-a">
             <a href="#" data-role="button" id="main_stock_imei" data-theme="b">Stock By IMEI</a>
         </div>
         <div class="ui-block-b">
@@ -29,11 +29,98 @@
         </div>
         <div class="ui-block-b">
             <a href="#" data-role="button" id="main_repair" data-theme="b">Repair</a>
-        </div>
+        </div> -->
     </div>
     <footer data-role="footer"><h1></h1></footer>
 </section>
 <!-- end main page -->
 
+<!-- begin clothing_main dialog-->
+<section id="clothing_main_dialog" data-role="dialog">
+    <header data-role="header">
+        <h1 id="header">Please select option</h1>
+    </header>
+    <div data-role="content" class="content">
+        <a href="#" data-role="button" data-theme="b" id="new_btn">New</a>
+        <a href="#" data-role="button" data-theme="b" id="amend_btn">Amend</a>
+        <a href="#" data-role="button" data-theme="b" id="query_btn">Info</a>
+    </div>
+</section>
+<!-- end clothing_main dialog -->
+
+<!-- begin clothing page-->
+<section id="clothing" data-role="page">
+    <header data-role="header">
+        <a href="#main" data-role="button" data-theme="b" class="ui-btn-left">Home</a>
+        <h1 id="header">Clothing</h1>
+    </header>
+    <div data-role="content" class="content">       
+        <div data-role="fieldcontain" id="update_div">
+            <label for="clothing_id" class="select">Id:</label>
+            <input type="text" id="clothing_id" name="clothing_id" readonly>
+        </div>
+        <div data-role="fieldcontain">
+            <label for="date" class="select">Date:</label>
+            <input name="date" id="date" type="date" data-role="datebox"
+                   data-options='{"mode": "calbox", "lockInput": false}' data-theme="b">
+        </div> 
+        <div data-role="fieldcontain">
+            <label for="desc">Desc:</label>
+            <input type="text" id="desc" name="desc">
+        </div>
+        <div data-role="fieldcontain">
+            <label for="unit_price">Unit Price:</label>
+            <input type="text" id="unit_price" name="unit_price">
+        </div>
+    </div> 
+    <footer data-role="footer">
+        <a href="#" data-role="button" data-theme="b" id="submit_btn">Submit</a>
+    </footer>
+</section>
+<!-- end clothing page -->
+
+<!-- begin clothing_id dialog-->
+<section id="clothing_id_dialog" data-role="dialog">
+    <header data-role="header">
+        <h1 id="header">Enter clothing id</h1>
+    </header>
+    <div data-role="content" class="content">
+        <form id="form">
+            <div data-role="fieldcontain">
+                <label for="clothing_id">Id:</label>       
+                <input name="Id" id="clothing_id" data-theme="b">
+            </div>
+            <a href="#" data-role="button" data-theme="b" class="ui-btn-left" id="ok_btn">OK</a>
+        </form>
+    </div>
+</section>
+<!-- end clothing_id dialog -->
+
+<!-- begin clothing info page-->
+<section id="clothing_info" data-role="page">
+    <header data-role="header">
+        <a href="#main" data-role="button" data-theme="b" class="ui-btn-left">Home</a>
+        <h1 id="header">Clothing Info</h1>
+    </header>
+    <div data-role="content" class="content">       
+        <div data-role="fieldcontain">
+            <label class="select">Id: </label>
+            <label class="select cls_display_value" id="clothing_id">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Date: </label>
+            <label class="select cls_display_value" id="date">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Desc: </label>
+            <label class="select cls_display_value" id="desc">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Unit Price: </label>
+            <label class="select cls_display_value" id="unit_price">
+        </div>
+    </div> 
+</section>
+<!-- end clothing info page -->
 
 
