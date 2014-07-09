@@ -1,6 +1,7 @@
 class ClothingsController < ApplicationController
   before_action :check_user
   skip_before_filter :verify_authenticity_token
+  include BoutiqueMainHelper
 
   def show
     begin
@@ -18,14 +19,12 @@ class ClothingsController < ApplicationController
       clothing = Clothing.find(params[:id])
       validate_create(params)
       data = params['clothing']
-      puts "1"
       if !clothing.update_attributes(
                       :desc => data['desc'],
                       :unit_price => data['unit_price'],
                       :date => data['date'])
         raise clothing.errors.full_messages[0]
       end
-      puts "2"
       render :json => clothing
     rescue Exception => ex
       render :json => {
@@ -52,14 +51,6 @@ class ClothingsController < ApplicationController
         :msg => ex.message
         }, :status => 400
     end
-  end
-
-  def check_user
-      # need to enter code here to return error if user is not found
-      # render :json => {
-      #   :abc => 111,
-      #   :zyx => 222
-      # }
   end
 
   def validate_create (params)

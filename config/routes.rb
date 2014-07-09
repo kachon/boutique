@@ -1,5 +1,6 @@
 Boutique::Application.routes.draw do
   resources :clothings
+  resources :sales
   get "static_pages/home"
   get "static_pages/help"
   get "boutique_main/home"
