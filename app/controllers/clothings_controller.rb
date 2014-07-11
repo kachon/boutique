@@ -53,6 +53,18 @@ class ClothingsController < ApplicationController
     end
   end
 
+  def destroy
+    begin
+      clothing = Clothing.find(params[:id])
+      clothing.destroy
+      render :json => clothing
+    rescue Exception => ex
+      render :json => {
+        :msg => ex.message
+        }, :status => 400
+    end
+  end
+
   def validate_create (params)
     if !params.has_key?('clothing')
       raise 'missing clothing'

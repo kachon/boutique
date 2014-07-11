@@ -5,8 +5,37 @@ class SalesController < ApplicationController
 
   def show
     begin
-      @sales = Sale.find(params[:id])
-      render :json => @sales.as_json(:include => :items)
+      @sale = Sale.find(params[:id])
+      puts "here show"
+      render :json => _render_sale(@sale)
+    rescue Exception => ex
+      render :json => {
+        :msg => ex.message
+        }, :status => 400
+    end
+  end
+
+  def update
+    begin
+      sale = Sale.find(params[:id])
+      puts "here #{params} #{sale}"
+      validate_create(params)
+      puts "here2 #{params}"
+      data = params['sale']
+      if !sale.update_attributes(
+                      :date => data['date'],
+                      :remark => data['remark'],
+                      :payment => data['payment'])
+        raise sale.errors.full_messages[0]
+      else
+        sale.items.clear
+        data['items'].each do |item| 
+          sale.items.create!(
+              :clothing => item['clothing'],
+              :unit_price => item['unit_price'])
+        end
+      end
+      render :json => _render_sale(sale)
     rescue Exception => ex
       render :json => {
         :msg => ex.message
@@ -30,15 +59,27 @@ class SalesController < ApplicationController
       data['items'].each do |item| 
         new_sale.items.create!(
             :clothing => item['clothing'],
-            :unit_price => data['unit_price'])
+            :unit_price => item['unit_price'])
       end
 
-      render :json => new_sale.as_json(:include => :items)
+      render :json => _render_sale(new_sale)
     rescue Exception => ex
       if new_sale
         new_sale.destroy
       end
 
+      render :json => {
+        :msg => ex.message
+        }, :status => 400
+    end
+  end
+
+  def destroy
+    begin
+      sale = Sale.find(params[:id])
+      sale.destroy
+      render :json => sale
+    rescue Exception => ex
       render :json => {
         :msg => ex.message
         }, :status => 400
@@ -76,7 +117,17 @@ class SalesController < ApplicationController
         raise 'missing unit_price'
       end
     end
+  end
 
+  private
+
+  def _render_sale(sale)
+    sale.as_json(:include => 
+                  { :items =>
+                    { :methods => :clothing_desc }  
+                  },
+                 :methods => :test
+                )
   end
 
 end

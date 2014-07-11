@@ -12,6 +12,9 @@
         <div class="ui-block-a">
             <a href="#" data-role="button" data-ajax="false" id="main_clothing" data-theme="b">Clothing</a>
         </div>
+        <div class="ui-block-b">
+            <a href="#" data-role="button" data-ajax="false" id="main_sale" data-theme="b">Sale</a>
+        </div>
 <!--         <div class="ui-block-a">
             <a href="#" data-role="button" id="main_stock_imei" data-theme="b">Stock By IMEI</a>
         </div>
@@ -123,4 +126,66 @@
 </section>
 <!-- end clothing info page -->
 
+<!-- begin sale_main dialog-->
+<section id="sale_main_dialog" data-role="dialog">
+    <header data-role="header">
+        <h1 id="header">Please select option</h1>
+    </header>
+    <div data-role="content" class="content">
+        <a href="#" data-role="button" data-theme="b" id="new_btn">New</a>
+        <a href="#" data-role="button" data-theme="b" id="amend_btn">Amend</a>
+        <a href="#" data-role="button" data-theme="b" id="query_btn">Info</a>
+    </div>
+</section>
+<!-- end sale_main dialog -->
 
+<!-- begin sale_id dialog-->
+<section id="sale_id_dialog" data-role="dialog">
+    <header data-role="header">
+        <h1 id="header">Enter sale id</h1>
+    </header>
+    <div data-role="content" class="content">
+        <form id="form">
+            <div data-role="fieldcontain">
+                <label for="sale_id">Id:</label>       
+                <input name="Id" id="sale_id" data-theme="b">
+            </div>
+            <a href="#" data-role="button" data-theme="b" class="ui-btn-left" id="ok_btn">OK</a>
+        </form>
+    </div>
+</section>
+<!-- end clothing_id dialog -->
+
+<!-- begin sale info page-->
+<section id="sale_info" data-role="page">
+    <header data-role="header">
+        <a href="#main" data-role="button" data-theme="b" class="ui-btn-left">Home</a>
+        <h1 id="header">Sale Info</h1>
+    </header>
+    <div data-role="content" class="content">       
+        <div data-role="fieldcontain">
+            <label class="select">Id: </label>
+            <label class="select cls_display_value" id="sale_id">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Date: </label>
+            <label class="select cls_display_value" id="date">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Payment: </label>
+            <label class="select cls_display_value" id="payment">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Remark: </label>
+            <label class="select cls_display_value" id="remark">
+        </div>
+        <div data-role="collapsible-set" id='items_div'>
+            <div data-role="collapsible" class='collapsible'>
+                <h2>Items:</h2>
+                <ol data-role="listview" id="items" data-inset="true">
+                </ol>
+            </div>
+        </div>
+    </div> 
+</section>
+<!-- end clothing info page -->
