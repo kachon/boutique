@@ -126,7 +126,7 @@
 </section>
 <!-- end clothing info page -->
 
-<!-- begin sale_main dialog-->
+<!-- sale_main dialog-->
 <section id="sale_main_dialog" data-role="dialog">
     <header data-role="header">
         <h1 id="header">Please select option</h1>
@@ -137,9 +137,8 @@
         <a href="#" data-role="button" data-theme="b" id="query_btn">Info</a>
     </div>
 </section>
-<!-- end sale_main dialog -->
 
-<!-- begin sale_id dialog-->
+<!-- sale_id dialog-->
 <section id="sale_id_dialog" data-role="dialog">
     <header data-role="header">
         <h1 id="header">Enter sale id</h1>
@@ -154,9 +153,8 @@
         </form>
     </div>
 </section>
-<!-- end clothing_id dialog -->
 
-<!-- begin sale info page-->
+<!-- sale info page-->
 <section id="sale_info" data-role="page">
     <header data-role="header">
         <a href="#main" data-role="button" data-theme="b" class="ui-btn-left">Home</a>
@@ -188,4 +186,66 @@
         </div>
     </div> 
 </section>
-<!-- end clothing info page -->
+
+<!-- sale page-->
+<section id="sale" data-role="page">
+    <header data-role="header">
+        <a href="#main" data-role="button" data-theme="b" class="ui-btn-left">Home</a>
+        <h1 id="header">Sale</h1>
+    </header>
+    <div data-role="content" class="content">       
+        <div data-role="fieldcontain" id="update_div">
+            <label for="sale_id" class="select">Sale ID:</label>
+            <input type="text" id="sale_id" name="sale_id" readonly>
+        </div>
+        <ol data-role="listview" id="items" data-inset="true">
+        </ol>   
+        <a href="#" id="add_btn" data-role="button" data-theme="b" class="ui-btn-right">Add</a>
+        <form action="example.html" method="get">
+            <div data-role="fieldcontain">
+                <label for="date" class="select">Date:</label>
+                <input name="date" id="date" type="date" data-role="datebox"
+                       data-options='{"mode": "calbox", "lockInput": false}' data-theme="b">
+            </div> 
+            <div data-role="fieldcontain">
+                <label for="payment" class="select">Payment:</label>
+                <select name="payment" id="payment">
+                    <option value="cash">Cash</option>
+                    <option value="credit">Credit Card</option>
+                </select>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="remark">Remark:</label>
+                <input type="text" id="remark" name="remark">
+            </div>
+        </form> 
+    </div> 
+    <footer data-role="footer">
+        <a href="#" data-role="button" data-theme="b" class="ui-btn-left" id="submit_btn">Submit</a>
+        <h1 id="total">Total: $0</h1>
+    </footer>
+    
+</section>
+
+<!-- sale_dialog page-->
+<section id="sale_dialog" data-role="dialog">
+    <header data-role="header">
+        <h1>Input Dialog</h1>
+    </header>
+    <div data-role="content" class="content">
+        <form id="input_form">
+            <div data-role="fieldcontain">
+                <label for="clothing_id">Clothing ID:</label>
+                <input type="text" id="clothing_id" name="clothing_id" required>
+            </div>
+            <div data-role="fieldcontain">
+                <label for="unit_cost">Unit Cost:</label>
+                <input type="text" id="unit_cost" name="unit_cost" value="0.0" required pattern="[0-9]+[.]*[0-9]*" >
+            </div>            
+            <a href="#" data-role="button" data-theme="b" class="ui-btn-left" id="ok_btn">OK</a>
+        </form>
+    </div>
+    
+    <script>
+    </script>
+</section>

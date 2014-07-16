@@ -1,39 +1,37 @@
 class window.Sale
   @ACTION = 'POST'
 
+  @items = []
+
   @url: ->
     "/sales/"
 
-  # @form_data: ->
-  #   console.log "sale form_data"
-  #   data = {}
-  #   data.date = $('#clothing #date').val()
-  #   data.desc = $('#clothing #desc').val()
-  #   data.unit_price = $('#clothing #unit_price').val()
-  #   #parseFloat($('#clothing #unit_price').val())
-  #   return { clothing: data }
+  @form_data: ->
+    console.log "Sale form_data"
+    data = {}
+    data.date = $('#sale #date').val()
+    data.remark = $('#sale #remark').val()
+    data.payment = $('#sale #payment').val()
+    data.items = @items
+    return { sale: data }
 
-  # @post: =>
-  #   post_url = "#{@url()}"
-  #   data = JSON.stringify @form_data()
-  #   #data = @form_data()
-  #   console.log "post_url #{post_url} #{data}"
-  #   # request = $.post post_url, data, (result) =>
-  #   #   info = result
-  #   #   alert "Repair Id: #{info.id}"
-  #   #   $.mobile.changePage "#main"
-  #   request = $.ajax 
-  #     url: post_url, 
-  #     type: 'POST',
-  #     data: data,
-  #     contentType: 'application/json'
-  #     success: (result) =>
-  #       info = result
-  #       alert "Clothing Id: #{info.id}"
-  #       $.mobile.changePage "#main"
+  @post: =>
+    post_url = "#{@url()}"
+    data = JSON.stringify @form_data()
+    #data = @form_data()
+    console.log "post_url #{post_url} #{data}"
+    request = $.ajax 
+      url: post_url, 
+      type: 'POST',
+      data: data,
+      contentType: 'application/json'
+      success: (result) =>
+        info = result
+        alert "Sale Id: #{info.id}"
+        $.mobile.changePage "#main"
 
-  #   request.fail (jqXHR, textStatus) =>
-  #     alert JSON.parse(jqXHR.responseText).msg
+    request.fail (jqXHR, textStatus) =>
+      alert JSON.parse(jqXHR.responseText).msg
 
   @reset: ->
     $('#sale #update_div').hide()
@@ -41,6 +39,8 @@ class window.Sale
     $('#sale #date').val ""
     $('#sale #payment').val ""
     $('#sale #remark').val ""
+    @reset_items()
+    @refresh_items()
 
   @get: (input) =>
     $('#sale #update_div').show()
@@ -104,6 +104,43 @@ class window.Sale
       $("#sale_info .collapsible").trigger "collapse"
       $("#sale_info #items").listview "refresh"
 
+  @add_item: (item) =>
+    @items.push item
+    console.log "after add_item #{JSON.stringify @items, null, 2}"
+    @display_item @items.length - 1
+
+  @delete_item: (index) ->
+    console.log "delete_item: " + @items.length
+    @items.splice index, 1
+    console.log "after delete_item #{JSON.stringify @items, null, 2}"
+    @refresh_items()
+    
+  @reset_items: ->
+    @items.length = 0
+
+  @display_item: (index) ->
+    console.log "display_item: #{index}"
+    item = @items[index]
+    console.log "display_item: #{JSON.stringify item, null, 2}" 
+    console.log "length: " + $("#sale #items li").length
+    clothing = "Clothing ID: " + item.clothing
+    unit_price = "Unit Price: $" + item.unit_price
+    input = $("<li></li>").html("<a href=\"#\"> <h5> #{clothing} </h5> 
+                                 <p class=\"topic\"><strong> #{unit_price} </strong></p> 
+                                 <a href=\"#\" class=\"delete\" data-icon=\"delete\">Delete</a>")
+    input.addClass "cls_item"
+    $("#sale #items").append input
+    $("#sale #items").listview "refresh"
+    console.log "Sales.prototype.display_item: done"
+
+  @refresh_items: ->
+    $("#sale .cls_item").remove()
+    i = 0
+
+    while i < @items.length
+      @display_item i
+      ++i
+    return
 
 $ ->
   console.log 'change data format'
@@ -138,6 +175,11 @@ $ ->
     else
       Sale.put(id)
 
+  $("#sale #add_btn").click ->
+    console.log "sale: add_btn"
+    $.mobile.changePage "#sale_dialog"
+    $("#sale_dialog #clothing_id").val ""
+
   $("#sale_id_dialog #ok_btn").click ->
     id = $("#sale_id_dialog #sale_id").val()
     console.log "id #{id}"
@@ -145,3 +187,20 @@ $ ->
       ret = Sale.get id
     else
       alert "Missing id"
+
+  $("#sale_dialog #ok_btn").click ->
+    valid = $("#sale_dialog #input_form")[0].checkValidity()
+    console.log "sale_dialog: ok_btn click " + valid
+    if valid
+      clothing = $("#sale_dialog #clothing_id").val()
+      unit_price = $("#sale_dialog #unit_cost").val()
+      Sale.add_item 
+        clothing: clothing,
+        unit_price: unit_price
+
+      $(".ui-dialog").dialog "close"
+      console.log "sale ok close dialog"
+
+  $("#sale").on "click", ".delete", ->
+    console.log "delete position: " + $(this).parent().index()
+    Sale.delete_item $(this).parent().index()
