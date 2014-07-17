@@ -128,3 +128,7 @@ $ ->
       ret = Clothing.get id
     else
       alert "Missing id"
+
+  $("#clothing_id_dialog").on "pagebeforeshow", ->
+    console.log "clothing_id_dialog pagebeforeshow"
+    $("#clothing_id_dialog #clothing_id").val ""

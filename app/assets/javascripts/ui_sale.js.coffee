@@ -57,22 +57,22 @@ class window.Sale
       alert jqXHR.responseText
       $.mobile.changePage "#main"
 
-  # @put: (input) =>
-  #   put_url = "#{@url()}#{input}/"
-  #   data = JSON.stringify @form_data()
-  #   console.log "put_url #{put_url} #{data}"
-  #   request = $.ajax(
-  #     type: "PUT"
-  #     url: put_url
-  #     data: data
-  #     contentType: 'application/json'
-  #   )
-  #   request.done (result) =>
-  #     info = result
-  #     alert "Clothing Id: #{info.id}"
-  #     $.mobile.changePage "#main"
-  #   request.fail (jqXHR, textStatus) =>
-  #     alert jqXHR.responseText
+  @put: (input) =>
+    put_url = "#{@url()}#{input}/"
+    data = JSON.stringify @form_data()
+    console.log "put_url #{put_url} #{data}"
+    request = $.ajax(
+      type: "PUT"
+      url: put_url
+      data: data
+      contentType: 'application/json'
+    )
+    request.done (result) =>
+      info = result
+      alert "Sale Id: #{info.id}"
+      $.mobile.changePage "#main"
+    request.fail (jqXHR, textStatus) =>
+      alert jqXHR.responseText
 
   @display_data: (data) =>
     if @ACTION == 'PUT'
@@ -81,6 +81,10 @@ class window.Sale
       $('#sale #payment').val data.payment
       $('#sale #remark').val data.remark
       $.mobile.changePage "#sale"
+      for item in data.items
+        @add_item 
+          clothing: item.clothing,
+          unit_price: item.unit_price
     else if @ACTION == 'GET'
       $.mobile.changePage "#sale_info"
       $("#sale_info .item").remove()
@@ -154,10 +158,12 @@ $ ->
 
   $("#sale_main_dialog #amend_btn").click ->
     Sale.ACTION = 'PUT'
+    Sale.reset()
     $.mobile.changePage "#sale_id_dialog"
 
   $("#sale_main_dialog #query_btn").click ->
     Sale.ACTION = 'GET'
+    Sale.reset()
     $.mobile.changePage "#sale_id_dialog"
 
   $("#sale_main_dialog #new_btn").click ->
@@ -204,3 +210,7 @@ $ ->
   $("#sale").on "click", ".delete", ->
     console.log "delete position: " + $(this).parent().index()
     Sale.delete_item $(this).parent().index()
+
+  $("#sale_id_dialog").on "pagebeforeshow", ->
+    console.log "sale_id_dialog pagebeforeshow"
+    $("#sale_id_dialog #sale_id").val ""
