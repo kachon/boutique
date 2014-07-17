@@ -87,6 +87,12 @@ class window.Clothing
       $('#clothing_info #date').html data.date
       $('#clothing_info #desc').html data.desc
       $('#clothing_info #unit_price').html data.unit_price
+      $("#clothing_info #img_id").attr( "title", "Photo by Kelly Clark" );
+      $("#clothing_info #img_id").attr("src", "")
+
+      img_url = DropboxClient.client.thumbnailUrl "/worldcup.jpeg", {size: 'l'}
+      console.log ("#{img_url}")
+      $("#clothing_info #img_id").attr("src", img_url)
 
 $ ->
   console.log 'change data format'
