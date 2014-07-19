@@ -68,12 +68,22 @@
                    data-options='{"mode": "calbox", "lockInput": false}' data-theme="b">
         </div> 
         <div data-role="fieldcontain">
-            <label for="desc">Desc:</label>
-            <input type="text" id="desc" name="desc">
-        </div>
-        <div data-role="fieldcontain">
             <label for="unit_price">Unit Price:</label>
             <input type="text" id="unit_price" name="unit_price">
+        </div>
+<!--         <div data-role="fieldcontain">
+            <label for="desc">Desc:</label>
+            <input type="text" id="desc" name="desc">
+        </div> -->
+        <div data-role="fieldcontain">
+            <label for="img_link">Img link:</label>
+            <input type="text" id="img_link" name="img_link">
+        </div>
+        <div data-role="fieldcontain">
+            <a href="#" data-role="button" data-theme="b" id="preview_btn">Preview img</a>
+        </div>
+        <div data-role="fieldcontain">
+            <img id="img_id" src="" alt="Image not found"/>
         </div>
     </div> 
     <footer data-role="footer">
@@ -114,13 +124,17 @@
             <label class="select">Date: </label>
             <label class="select cls_display_value" id="date">
         </div>
-        <div data-role="fieldcontain">
+<!--         <div data-role="fieldcontain">
             <label class="select">Desc: </label>
             <label class="select cls_display_value" id="desc">
-        </div>
+        </div> -->
         <div data-role="fieldcontain">
             <label class="select">Unit Price: </label>
             <label class="select cls_display_value" id="unit_price">
+        </div>
+        <div data-role="fieldcontain">
+            <label class="select">Img link: </label>
+            <label class="select cls_display_value" id="img_link">
         </div>
         <img id="img_id" src="" alt="Image not found"/>
     </div> 
@@ -199,8 +213,8 @@
             <label for="sale_id" class="select">Sale ID:</label>
             <input type="text" id="sale_id" name="sale_id" readonly>
         </div>
-        <ol data-role="listview" id="items" data-inset="true">
-        </ol>   
+        <ul data-role="listview" id="items" data-inset="true">
+        </ul>   
         <a href="#" id="add_btn" data-role="button" data-theme="b" class="ui-btn-right">Add</a>
         <form action="example.html" method="get">
             <div data-role="fieldcontain">

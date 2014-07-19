@@ -129,9 +129,14 @@ class window.Sale
     console.log "length: " + $("#sale #items li").length
     clothing = "Clothing ID: " + item.clothing
     unit_price = "Unit Price: $" + item.unit_price
-    input = $("<li></li>").html("<a href=\"#\"> <h5> #{clothing} </h5> 
-                                 <p class=\"topic\"><strong> #{unit_price} </strong></p> 
-                                 <a href=\"#\" class=\"delete\" data-icon=\"delete\">Delete</a>")
+    img_url = DropboxClient.client.thumbnailUrl item.img_link, {size: 'l'}
+    console.log "#{img_url}"
+    input = $("<li></li>").html(
+      "<a href=\"#\">
+       <img src=\"#{img_url}\">
+       <h5> #{clothing} </h5> 
+       <p class=\"topic\"><strong> #{unit_price} </strong></p> 
+       <a href=\"#\" class=\"delete\" data-icon=\"delete\">Delete</a>")
     input.addClass "cls_item"
     $("#sale #items").append input
     $("#sale #items").listview "refresh"
@@ -200,12 +205,15 @@ $ ->
     if valid
       clothing = $("#sale_dialog #clothing_id").val()
       unit_price = $("#sale_dialog #unit_cost").val()
-      Sale.add_item 
-        clothing: clothing,
-        unit_price: unit_price
+      Clothing.get_cb clothing, (result) =>
+        console.log "Clothing.get_cb #{JSON.stringify result, null, 2}"
+        Sale.add_item 
+          clothing: clothing,
+          unit_price: unit_price
+          img_link: result.img_link
+        $(".ui-dialog").dialog "close"
+        console.log "sale ok close dialog"
 
-      $(".ui-dialog").dialog "close"
-      console.log "sale ok close dialog"
 
   $("#sale").on "click", ".delete", ->
     console.log "delete position: " + $(this).parent().index()

@@ -20,7 +20,7 @@ class ClothingsController < ApplicationController
       validate_create(params)
       data = params['clothing']
       if !clothing.update_attributes(
-                      :desc => data['desc'],
+                      :img_link => data['img_link'],
                       :unit_price => data['unit_price'],
                       :date => data['date'])
         raise clothing.errors.full_messages[0]
@@ -39,7 +39,7 @@ class ClothingsController < ApplicationController
       validate_create(params)
       data = params['clothing']
       new_clothing = Clothing.new(
-                      :desc => data['desc'],
+                      :img_link => data['img_link'],
                       :unit_price => data['unit_price'],
                       :date => data['date'])
       if !new_clothing.save()
@@ -71,8 +71,8 @@ class ClothingsController < ApplicationController
     end
 
     clothing = params['clothing']
-    if !clothing.has_key?('desc')
-      raise 'missing desc'
+    if !clothing.has_key?('img_link')
+      raise 'missing img_link'
     end
 
     if !clothing.has_key?('unit_price')

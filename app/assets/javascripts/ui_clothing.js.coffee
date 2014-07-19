@@ -10,6 +10,7 @@ class window.Clothing
     data.date = $('#clothing #date').val()
     data.desc = $('#clothing #desc').val()
     data.unit_price = $('#clothing #unit_price').val()
+    data.img_link = $('#clothing #img_link').val()
     #parseFloat($('#clothing #unit_price').val())
     return { clothing: data }
 
@@ -41,6 +42,15 @@ class window.Clothing
     $('#clothing #date').val ""
     $('#clothing #desc').val ""
     $('#clothing #unit_price').val "0.0"
+    $('#clothing #img_link').val ""
+    $("#clothing #img_id").attr("src", "")
+
+  @get_cb: (input, cb) =>
+    get_url = "#{@url()}#{input}/"
+    request = $.get get_url, (result) => 
+      cb result
+    request.fail (jqXHR, textStatus) =>
+      alert jqXHR.responseText
 
   @get: (input) =>
     $('#clothing #update_div').show()
@@ -81,17 +91,17 @@ class window.Clothing
       $('#clothing #date').val data.date
       $('#clothing #desc').val data.desc
       $('#clothing #unit_price').val data.unit_price
+      $('#clothing #img_link').val data.img_link
+      img_url = DropboxClient.client.thumbnailUrl data.img_link, {size: 'l'}
+      $("#clothing #img_id").attr("src", img_url)
     else if @ACTION == 'GET'
       $.mobile.changePage "#clothing_info"
       $('#clothing_info #clothing_id').html data.id
       $('#clothing_info #date').html data.date
       $('#clothing_info #desc').html data.desc
       $('#clothing_info #unit_price').html data.unit_price
-      $("#clothing_info #img_id").attr( "title", "Photo by Kelly Clark" );
-      $("#clothing_info #img_id").attr("src", "")
-
-      img_url = DropboxClient.client.thumbnailUrl "/worldcup.jpeg", {size: 'l'}
-      console.log ("#{img_url}")
+      $('#clothing_info #img_link').html data.img_link
+      img_url = DropboxClient.client.thumbnailUrl data.img_link, {size: 'l'}
       $("#clothing_info #img_id").attr("src", img_url)
 
 $ ->
@@ -126,6 +136,13 @@ $ ->
       Clothing.post()
     else
       Clothing.put(id)
+
+  $("#clothing #preview_btn").click ->
+    console.log "clothing: preview_btn"
+    img_link = $("#clothing #img_link").val()
+    img_url = DropboxClient.client.thumbnailUrl img_link, {size: 'l'}
+    console.log ("#{img_url}")
+    $("#clothing #img_id").attr("src", img_url)
 
   $("#clothing_id_dialog #ok_btn").click ->
     id = $("#clothing_id_dialog #clothing_id").val()
