@@ -152,7 +152,7 @@ class window.Sale
     return
 
 $ ->
-  console.log 'change data format'
+  console.log 'change data format ??'
   $.extend jQuery.mobile.datebox.prototype.options, {
     'overrideDateFormat': '%Y-%m-%d',
     'overrideHeaderFormat': '%Y-%m-%d'

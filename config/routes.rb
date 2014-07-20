@@ -4,8 +4,9 @@ Boutique::Application.routes.draw do
   get "static_pages/home"
   get "static_pages/help"
   get "boutique_main/home"
-  get "boutique_main/dropbox"
-  devise_for :users, :skip => :registrations
+  #devise_for :users, :skip => :registrations
+  devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
