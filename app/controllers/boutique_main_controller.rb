@@ -4,4 +4,6 @@ class BoutiqueMainController < ApplicationController
   def home
   end
   
+  def dropbox
+  end
 end
