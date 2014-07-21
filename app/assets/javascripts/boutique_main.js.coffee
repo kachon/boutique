@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  console.log 'boutique main@@'
+  console.log 'boutique main!??!'
 
   $("#main #logout_btn").click ->
     console.log 'logout btn clicked'
