@@ -105,7 +105,7 @@ class window.Clothing
       $("#clothing_info #img_id").attr("src", img_url)
 
 $ ->
-  console.log 'change data format'
+  console.log 'init ui_clothing'
   $.extend jQuery.mobile.datebox.prototype.options, {
     'overrideDateFormat': '%Y-%m-%d',
     'overrideHeaderFormat': '%Y-%m-%d'

@@ -13,6 +13,7 @@ class window.DropboxClient
         @client = client
 
 $ ->
+  console.log 'init ui_dropbox'
   DropboxClient.init()
   # console.log 'dropbox'
   # client = new Dropbox.Client({ key: "uonyr25yyc5c53z" })

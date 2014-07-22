@@ -107,11 +107,27 @@ class window.Sale
 
       $("#sale_info .collapsible").trigger "collapse"
       $("#sale_info #items").listview "refresh"
+      @display_total_for_info(data.items)
+
+  @display_total: =>
+    total = @calc_total(@items)
+    $("#sale #total").html "Total: $#{total}"
+
+  @display_total_for_info: (items) =>
+    total = @calc_total(items)
+    $("#sale_info #total").html "$#{total}"
+
+  @calc_total: (items) =>
+    total = 0
+    for item in items
+      total += parseFloat(item.unit_price)
+    return total
 
   @add_item: (item) =>
     @items.push item
     console.log "after add_item #{JSON.stringify @items, null, 2}"
     @display_item @items.length - 1
+    @display_total()
 
   @delete_item: (index) ->
     console.log "delete_item: " + @items.length
@@ -149,10 +165,12 @@ class window.Sale
     while i < @items.length
       @display_item i
       ++i
+
+    @display_total()
     return
 
 $ ->
-  console.log 'change data format!!'
+  console.log 'init ui_sales'
   $.extend jQuery.mobile.datebox.prototype.options, {
     'overrideDateFormat': '%Y-%m-%d',
     'overrideHeaderFormat': '%Y-%m-%d'
@@ -190,6 +208,7 @@ $ ->
     console.log "sale: add_btn"
     $.mobile.changePage "#sale_dialog"
     $("#sale_dialog #clothing_id").val ""
+    $("#sale_dialog #unit_cost").val "0.0"
 
   $("#sale_id_dialog #ok_btn").click ->
     id = $("#sale_id_dialog #sale_id").val()

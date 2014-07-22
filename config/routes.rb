@@ -4,6 +4,7 @@ Boutique::Application.routes.draw do
   get "static_pages/home"
   get "static_pages/help"
   get "boutique_main/home"
+  match "boutique", to: 'boutique_main#home', via: :get
   #devise_for :users, :skip => :registrations
   devise_for :users
 

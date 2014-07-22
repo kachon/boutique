@@ -11,4 +11,8 @@
 // about supported directives.
 //
 //= require turbolinks
+//= require jqm-datebox.core.min
+//= require jqm-datebox.mode.calbox.min
+//= require jquery.mobile.datebox.i18n.en_US.utf8
 //= require_tree .
+
