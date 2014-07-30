@@ -18,9 +18,7 @@ class SalesController < ApplicationController
   def update
     begin
       sale = Sale.find(params[:id])
-      puts "here #{params} #{sale}"
       validate_create(params)
-      puts "here2 #{params}"
       data = params['sale']
       if !sale.update_attributes(
                       :date => data['date'],

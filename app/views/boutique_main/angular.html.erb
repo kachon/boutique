@@ -1,0 +1,38 @@
+<body ng-controller="BoutiqueCtrl">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+        <!--Sidebar content-->
+
+        Search: <input ng-model="query">
+      </div>
+      
+      <div class="col-md-10">
+        <ul>
+          <li ng-repeat="clothing in clothings">
+            {{clothing.name}}
+            <p>{{clothing.unit_price}}</p>
+          </li>
+        </ul>
+      </div>
+      
+      <div id="images">
+        <div id="content">
+          <video width="640" height="480"></video>
+          <canvas width="640" height="480"></canvas>
+        </div>
+        <div id="frames"></div>
+        <div id="buttons">
+          <input id="startmedia" type="button" value="StartMedia" ng-click="startMedia()">
+          <input id="snapshots" type="button" value="Snapshots" ng-click="takeSnapshot()">
+        </div>
+        <div id="message">
+            {{msg}}
+        </div>
+        <img ng-src="{{imageUrl}}">
+      </div>
+
+    </div>
+  </div>
+</body>
