@@ -1,35 +1,49 @@
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-2">
-        <!--Sidebar content-->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <!--Sidebar content-->
 
-        Search: <input ng-model="query">
-      </div>
-      
-      <div class="col-md-10">
-        <ul>
-          <li ng-repeat="clothing in clothings">
-            {{clothing.name}}
-            <p>{{clothing.unit_price}}</p>
-          </li>
-        </ul>
-      </div>
-      
-      <div id="images">
-        <div id="content">
-          <video width="640" height="480"></video>
-          <canvas width="640" height="480"></canvas>
-        </div>
-        <div id="frames"></div>
-        <div id="buttons">
-          <input id="startmedia" type="button" value="StartMedia" ng-click="startMedia()">
-          <input id="snapshots" type="button" value="Snapshots" ng-click="takeSnapshot()">
-        </div>
-        <div id="message">
-            {{msg}}
-        </div>
-        <img ng-src="{{imageUrl}}">
-      </div>
-
+      Search: <input ng-model="query">
     </div>
+    
+    <div class="col-md-10">
+      <ul>
+        <li ng-repeat="clothing in clothings">
+          {{clothing.name}}
+          <p>{{clothing.unit_price}}</p>
+        </li>
+      </ul>
+    </div>
+    
+    <div id="images">
+      <div id="content">
+        <video width="640" height="480"></video>
+        <canvas width="640" height="480"></canvas>
+      </div>
+      <div id="frames"></div>
+      <div id="buttons">
+        <input id="startmedia" type="button" value="StartMedia" ng-click="startMedia()">
+        <input id="snapshots" type="button" value="Snapshots" ng-click="takeSnapshot()">
+        <input id="open" type="button" value="Open" ng-click="open()">
+      </div>
+      <div id="message">
+          {{msg}}
+      </div>
+      <img ng-src="{{imageUrl}}">
+    </div>
+
   </div>
+
+  <script type="text/ng-template" id="myModalContent.html">
+    <div class="modal-header">
+        <h3 class="modal-title">Modal</h3>
+    </div>
+    <div class="modal-body">
+        Model body
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+  </script>
+</div>

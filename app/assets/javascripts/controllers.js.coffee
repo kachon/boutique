@@ -2,7 +2,7 @@
 # boutiqueApp = angular.module('boutiqueApp', [])
 boutiqueControllers = angular.module('boutiqueControllers', [])
 
-boutiqueControllers.controller 'BoutiqueCtrl', ($scope) ->
+boutiqueControllers.controller 'BoutiqueCtrl', ($scope, $modal) ->
 
   console.log "constructor?"
   video = document.getElementsByTagName('video')[0];
@@ -27,6 +27,7 @@ boutiqueControllers.controller 'BoutiqueCtrl', ($scope) ->
     ctx = canvas.getContext('2d');
     ctx.drawImage(video, 0, 0, 640, 480);
     $scope.imageUrl = canvas.toDataURL('image/png')
+
   $scope.startMedia = () =>
     #$scope.msg = "wtf"
     
@@ -50,4 +51,27 @@ boutiqueControllers.controller 'BoutiqueCtrl', ($scope) ->
       console.log "got exception #{e}"
       $scope.msg = e
 
-  return
+  $scope.open = (size) =>
+    console.log "open clicked "
+    modalInstance = $modal.open({
+        templateUrl: 'myModalContent.html',
+        controller: ModalInstanceCtrl,
+        size: size
+        resolve: {}
+      })
+
+    modalInstance.result.then(
+      (result) =>
+        console.log "#{result}"
+        $scope.msg = result
+    ,
+      () =>
+        console.log "#dismissed"
+        $scope.msg = "dismissed"
+      )
+
+ModalInstanceCtrl = ($scope, $modalInstance) ->
+  $scope.ok = () =>
+    $modalInstance.close('123')
+  $scope.cancel = () =>
+    $modalInstance.dismiss('cancel')

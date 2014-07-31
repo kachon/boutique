@@ -1,4 +1,5 @@
 boutiqueApp = angular.module('boutiqueApp', [
+  'ui.bootstrap',
   'ngRoute',
   'boutiqueControllers'
 ])
