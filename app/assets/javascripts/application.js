@@ -10,6 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require angular_app
-//= require controllers
+//= require turbolinks
+//= require jqm-datebox.core.min
+//= require jqm-datebox.mode.calbox.min
+//= require jquery.mobile.datebox.i18n.en_US.utf8
+//= require_tree .
 
