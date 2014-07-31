@@ -11,4 +11,5 @@
 // about supported directives.
 //
 //= require turbolinks
+//= require angular_app
 //= require controllers

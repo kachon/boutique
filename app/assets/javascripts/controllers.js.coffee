@@ -1,7 +1,8 @@
 
-boutiqueApp = angular.module('boutiqueApp', [])
+# boutiqueApp = angular.module('boutiqueApp', [])
+boutiqueControllers = angular.module('boutiqueControllers', [])
 
-boutiqueApp.controller 'BoutiqueCtrl', ($scope) ->
+boutiqueControllers.controller 'BoutiqueCtrl', ($scope) ->
 
   console.log "constructor?"
   video = document.getElementsByTagName('video')[0];

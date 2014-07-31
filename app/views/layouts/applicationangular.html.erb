@@ -6,11 +6,12 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <!-- Optional theme -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-    <%= stylesheet_link_tag "applicationangular", media: "all", "data-turbolinks-track" => true %>
+    <%= stylesheet_link_tag "applicationangular", media: "all" %>
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js ">
     </script>
-    <%= javascript_include_tag "applicationangular", "data-turbolinks-track" => true %>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular-route.js"></script>
+    <%= javascript_include_tag "applicationangular" %>
     <%= csrf_meta_tags %>
 </head>
 <body>
