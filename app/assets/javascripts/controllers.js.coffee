@@ -6,7 +6,8 @@ boutiqueControllers.controller 'BoutiqueCtrl', ($scope, $modal) ->
 
   console.log "constructor?"
   video = document.getElementsByTagName('video')[0];
-  canvas = document.getElementsByTagName('canvas')[0];
+  #canvas = document.getElementsByTagName('canvas')[0];
+  canvas = document.createElement('canvas')
 
   $scope.clothings = [
       'name': 'dress 1'
@@ -25,7 +26,7 @@ boutiqueControllers.controller 'BoutiqueCtrl', ($scope, $modal) ->
     console.log "Snapshot is clicked"
     $scope.msg = "clicked!!"
     ctx = canvas.getContext('2d');
-    ctx.drawImage(video, 0, 0, 640, 480);
+    ctx.drawImage(video, 0, 0, 200, 200);
     $scope.imageUrl = canvas.toDataURL('image/png')
 
   $scope.startMedia = () =>

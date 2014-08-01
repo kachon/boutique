@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <form role="form">
+    <div class="form-group">
+      <label>Date</label>
+      <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+              <input type="text" class="form-control" datepicker-popup="{{format}}" ng-model="dt" is-open="opened" ng-required="true" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <label for="unitPrice">Unit Price</label>
+        <input type="number" class="form-control" id="unitPrice" ng-model="unitPrice">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-default" ng-click="add()">Add</button>
+  </form>
+
+  <p></p>
+  
+  <div class="row">
+    <div class="col-md-6">
+      <video width="160" height="120"></video>
+    </div>
+    <div class="col-md-6">
+      <img width="160" height="120" ng-src="{{imageUrl}}">
+    </div>
+  </div>
+  <div>
+    <input id="startvideo" type="button" class="btn btn-default" value="Start Video" ng-click="startVideo()">
+    <input id="takepic" type="button" class="btn btn-default" value="Take Pic" ng-click="takePic()">
+  </div>
+
+</div>

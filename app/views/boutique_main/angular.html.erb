@@ -36,4 +36,30 @@
   </div>
 </body>
 -->
-<div ng-view></div>
+<div class="container">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">K-Boutique</a>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href class="dropdown-toggle" >
+              Clothing
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#new_clothing">New</a></li>
+              <li><a href="#info_clothing">Info</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="jumbotron">
+    <div ng-view></div>
+  </div>
+</div>
