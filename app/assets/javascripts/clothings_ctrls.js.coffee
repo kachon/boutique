@@ -8,18 +8,18 @@ angular.module('boutiqueControllers').controller(
     canvas.height = 120
     $scope.unitPrice = 0
     $scope.imageUrl = null
+    $scope.date = null
 
-    $scope.initDate = new Date('2016-15-20');
     $scope.formats = ['dd-MMMM-yyyy', 'yyyy-MM-dd', 'dd.MM.yyyy', 'shortDate'];
     $scope.format = $scope.formats[1];
 
     $scope.today = () ->
-      $scope.dt = new Date()
+      $scope.date = new Date()
 
     $scope.today()
 
     $scope.clear = () ->
-      $scope.dt = null
+      $scope.date = null
 
     $scope.open = ($event) =>
       $event.preventDefault()
@@ -27,7 +27,7 @@ angular.module('boutiqueControllers').controller(
       $scope.opened = true
   
     $scope.add = () =>
-      console.log "Add clothing #{$scope.unitPrice} #{$scope.dt}"
+      console.log "Add clothing #{$scope.unitPrice} #{$scope.date}"
 
     $scope.startVideo = () =>
       try
