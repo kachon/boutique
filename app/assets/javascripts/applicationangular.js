@@ -13,3 +13,4 @@
 //= require angular_app
 //= require controllers
 //= require clothings_ctrls
+//= require services
