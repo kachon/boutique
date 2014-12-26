@@ -7,6 +7,8 @@ production:
      # credentials safe e.g. <%= ENV['MONGOLAB_URI'] %>.
      uri: ENV['MONGOLAB_URI']
 
+     database: boutique
+
      options:
        # max_retries specifies the number of times to attempt
        # an operation before giving up.
