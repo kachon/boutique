@@ -25,6 +25,7 @@ gem 'jbuilder', '1.0.2'
 gem 'treetop', '1.4.14'
 gem 'devise', '3.2.4'
 gem 'redis'
+gem "mongoid", "~> 4.0.0"
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
