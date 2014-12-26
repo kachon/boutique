@@ -1,6 +1,6 @@
-class Comment
+class Reply
   include Mongoid::Document
   field :content, type: String
 
-  embeds_many :replies
+  embedded_in :comment
 end
